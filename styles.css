@@ -33,10 +33,16 @@ header h1 {
 }
 
 /* Estilos da Navegação */
+nav {
+    width: 100%;
+    justify-content: flex-start;
+    display: flex;
+    padding: 20px 40px;
+    align-items: center;
+}
 nav ul {
     list-style-type: none;
     text-align: center;
-    margin-top: 20px;
 }
 
 nav ul li {
