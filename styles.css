@@ -28,6 +28,11 @@ header {
     display: flex;
 }
 
+header a {
+    display: flex;
+    align-items: center;
+}
+
 header h1 {
     font-size: 2em;
 }
@@ -37,9 +42,11 @@ nav {
     width: 100%;
     justify-content: flex-start;
     display: flex;
-    padding: 20px 40px;
     align-items: center;
+    text-align: center;
+    align-self: center;
 }
+
 nav ul {
     list-style-type: none;
     text-align: center;
