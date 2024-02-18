@@ -24,16 +24,8 @@ body {
 
 /* Estilos do Header */
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-}
-
-header a {
-    color: #fff;
-    cursor: pointer;
-    text-decoration: none;
+    height: 120px;
+    display: flex;
 }
 
 header h1 {
@@ -78,7 +70,8 @@ section {
 
 .logo {
     width: 100%;
-    padding: 40px;
+    padding: 20px;
+    max-height: 100%;
 }
 
 /* Estilos do Formulário de Contato */
