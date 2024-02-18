@@ -27,6 +27,12 @@ header {
     text-align: center;
 }
 
+header a {
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 header h1 {
     font-size: 2em;
 }
