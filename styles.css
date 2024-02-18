@@ -50,6 +50,7 @@ nav {
 nav ul {
     list-style-type: none;
     text-align: center;
+    display: flex;
 }
 
 nav ul li {
@@ -83,7 +84,7 @@ section {
 
 .logo {
     width: 100%;
-    padding: 20px;
+    margin: 0 20px;
     max-height: 100%;
 }
 
