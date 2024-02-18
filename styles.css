@@ -78,7 +78,7 @@ section {
 
 .logo {
     width: 100%;
-    height: 100%;
+    padding: 40px;
 }
 
 /* Estilos do Formulário de Contato */
@@ -118,7 +118,5 @@ footer {
     color: #fff;
     padding: 20px 0;
     text-align: center;
-    position: absolute;
     width: 100%;
-    bottom: 0;
 }
