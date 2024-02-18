@@ -83,13 +83,6 @@ section {
     flex-direction: column;
 }
 
-section p {
-    display: flex;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 10px 10px 30px -20px;
-}
-
 .logo {
     width: 100%;
     margin: 0 20px;
