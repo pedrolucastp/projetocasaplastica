@@ -38,6 +38,12 @@ header h1 {
     font-size: 2em;
 }
 
+.lobster-regular {
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 /* Estilos da Navegação */
 nav {
     width: 100%;
