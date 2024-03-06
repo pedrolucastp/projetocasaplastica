@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const page = this.getAttribute('data-page');
             const pageContent = loadPageContent(page);
-            document.getElementById('content').innerHTML = pageContent;
+            document.getElementById('main').innerHTML = pageContent;
         });
     });
 });
