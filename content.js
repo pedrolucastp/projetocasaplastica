@@ -42,7 +42,7 @@ function createTitleHTML(title) {
 }
 
 function createContentHTML(bodyArray) {
-    return bodyArray.map(paragraph => `<p>${paragraph}</p>`).join('');
+    return bodyArray.map(block => `<div class="block">${block}</div>`).join('');
 }
 
 function loadPageContent(pageKey) {
