@@ -2,19 +2,19 @@ const pageTextContent = {
     home: {
         title: "Bem-vindo à Casa Plastica",
         body: [
-            "Desafie a poluição plástica conosco."
-            "Nós oferecemos soluções inovadoras e acessíveis para a reciclagem de plásticos, promovendo a sustentabilidade e a preservação do meio ambiente."
+            "Desafie a poluição plástica conosco.",
+            "Nós oferecemos soluções inovadoras e acessíveis para a reciclagem de plásticos, promovendo a sustentabilidade e a preservação do meio ambiente.",
             "Explore nosso site para saber mais sobre nossos serviços, produtos e iniciativas."
         ]
     },
     sobre: {
         title: "Sobre Nós",
         body: [
-            "Somos a Casa Plastica, uma empresa empenhada em combater a poluição plástica e promover a sustentabilidade."
+            "Somos a Casa Plastica, uma empresa empenhada em combater a poluição plástica e promover a sustentabilidade.",
             "Nosso projeto surgiu e segue com a ideia de construir uma casa feita inteiramente de plásticos retirados dos oceanos, mas evoluímos para muito mais.",
             "Desenvolvemos uma linha de máquinas e ferramentas para a reciclagem ser acessível a todos.",
             "Atualmente, desenvolvemos tecnologias e soluções para reciclagem em pequena escala, trabalhando em parceria com outras empresas, oferecendo consultorias, workshops e palestras sobre sustentabilidade e reciclagem de plásticos.",
-            "Estamos comprometidos em tornar o mundo um lugar mais limpo e sustentável para as gerações futuras.",
+            "Estamos comprometidos em tornar o mundo um lugar mais limpo e sustentável para as gerações futuras."
         ]
     },
     servicos: {
