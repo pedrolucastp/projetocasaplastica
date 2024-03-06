@@ -60,7 +60,7 @@ function loadPageContent(pageKey) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const initialPageContent = loadPageContent('home');
-    document.getElementById('content').innerHTML = initialPageContent;
+    document.getElementById('main').innerHTML = initialPageContent;
 
     document.querySelectorAll('nav a').forEach(link => {
         link.addEventListener('click', function(e) {
