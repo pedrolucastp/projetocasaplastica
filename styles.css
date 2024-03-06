@@ -95,6 +95,10 @@ section h2 {
     color: #FFF;
 }
 
+.block {
+    display: flex;
+}
+
 .logo {
     height: 80px;
 }
