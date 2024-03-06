@@ -48,6 +48,7 @@ nav {
     text-align: center;
     align-self: center;
     gap: 30px;
+    flex-wrap: wrap;
 }
 
 nav ul {
@@ -143,4 +144,11 @@ footer {
     color: #333;
     font-size: 12px;
     line-height: 16px;
+}
+
+/* Media query for screens smaller than 700px */
+@media (max-width: 700px) {
+    nav {
+        justify-content: center;
+    }
 }
