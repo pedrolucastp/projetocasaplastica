@@ -14,6 +14,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    padding: 5%;
 }
 
 .container {
@@ -86,11 +87,11 @@ section {
 section h2 {
     font-family: "Lobster", sans-serif;
     font-style: normal;
-    line-height: 100%;
+    line-height: 150%;
     font-weight: 400;
     letter-spacing: 2px;
     text-shadow: 2px 2px 0 #3d3933;
-    font-size: 13vw;
+    font-size: 7vw;
     color: #FFF;
 }
 
