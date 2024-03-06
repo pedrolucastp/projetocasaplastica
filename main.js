@@ -49,13 +49,14 @@ function loadPageContent(pageKey) {
     const pageData = pageTextContent[pageKey];
     if (!pageData) {
         console.error(`No content found for page: ${pageKey}`);
-        return `<p>Content not found.</p>`;
+        const errorMsg = `Content not found.`
+        return `<p>${errorMsg}</p>`;
     }
 
     const titleHTML = createTitleHTML(pageData.title);
     const contentHTML = createContentHTML(pageData.body);
 
-    return titleHTML + contentHTML;
+    return `<section>${titleHTML + contentHTML}</section>`;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
