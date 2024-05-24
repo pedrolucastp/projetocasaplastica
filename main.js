@@ -34,12 +34,6 @@ const pageTextContent = {
             `Ou nos escreva um <a href="mailto:pedrolucasp@gmail.com">email</a>`,
             `E siga-nos no Instagram: <a href="https://www.instagram.com/projetocasaplastica" target="_blank">@projetocasaplastica</a>`
         ]
-    },
-    'find-center': {
-        title: "Find Recycling Center",
-        body: [
-            `<div id="map"></div>`
-        ]
     }
 };
 
@@ -77,7 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('main').innerHTML = pageContent;
 
             if (page === 'find-center') {
-                initMap();
+                // Ensure the map is initialized after the page content is loaded
+                if (typeof google !== 'undefined') {
+                    initMap();
+                }
             }
         });
     });
