@@ -281,28 +281,14 @@
                     document.getElementById('main').innerHTML = pageContent;
 
                     if (page === 'map') {
-                        // Dynamically load Google Maps API script
-                        loadGoogleMapsScript();
+                        // Ensure the map is initialized after the page content is loaded
+                        if (typeof google !== 'undefined') {
+                            initMap();
+                        }
                     }
                 });
             });
         });
-
-        function loadGoogleMapsScript() {
-            const existingScript = document.getElementById('googleMaps');
-            if (existingScript) {
-                // Script already loaded, initialize map
-                initMap();
-                return;
-            }
-
-            const script = document.createElement('script');
-            script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places`;
-            script.async = true;
-            script.defer = true;
-            script.id = 'googleMaps';
-            document.body.appendChild(script);
-        }
 
         function initMap() {
             const mapDiv = document.getElementById('map');
@@ -384,6 +370,8 @@
 
     <footer id="footer"></footer>
 
+    <!-- Ensure the API key is valid and correct -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjAoAGCBYq6grg_aBga7w7DTnOhvCZFI8&callback=initMap&libraries=places"></script>
 </body>
 
 </html>
