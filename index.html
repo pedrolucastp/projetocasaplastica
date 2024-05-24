@@ -291,13 +291,7 @@
         });
 
         function initMap() {
-            const mapDiv = document.getElementById('map');
-            if (!mapDiv) {
-                console.error("Map div not found");
-                return;
-            }
-
-            const map = new google.maps.Map(mapDiv, {
+            const map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: -34.397, lng: 150.644 },
                 zoom: 8
             });
@@ -370,7 +364,6 @@
 
     <footer id="footer"></footer>
 
-    <!-- Ensure the API key is valid and correct -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjAoAGCBYq6grg_aBga7w7DTnOhvCZFI8&callback=initMap&libraries=places"></script>
 </body>
 
