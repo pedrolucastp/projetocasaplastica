@@ -345,7 +345,7 @@
             }
 
             function searchRecyclingCenters(pos, map) {
-                const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node[amenity=recycling](around:5000,${pos[0]},${pos[1]});out;`;
+                const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node[amenity=reciclagem](around:15000,${pos[0]},${pos[1]});out;`;
                 
                 axios.get(overpassUrl).then(response => {
                     const data = response.data;
