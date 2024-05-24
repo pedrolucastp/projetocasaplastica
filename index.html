@@ -13,7 +13,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"></noscript>
-   
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
     <style>
         /* Reset CSS */
         * {
@@ -176,6 +179,9 @@
         }
     </style>
 
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
     <script>
         const headerContent = `
             <nav>
@@ -185,7 +191,7 @@
                     <li><a href="#" data-page="sobre">Sobre</a></li>
                     <li><a href="#" data-page="servicos">Serviços</a></li>
                     <li><a href="#" data-page="contato">Contato</a></li>
-                    <li><a href="#" data-page="map"></a></li> 
+                    <li><a href="#" data-page="map">Mapa</a></li>
                 </ul>
             </nav>
         `;
@@ -281,78 +287,83 @@
                     document.getElementById('main').innerHTML = pageContent;
 
                     if (page === 'map') {
-                        // Ensure the map is initialized after the page content is loaded
-                        if (typeof google !== 'undefined') {
-                            initMap();
-                        }
+                        // Initialize Leaflet map
+                        initMap();
                     }
                 });
             });
         });
 
         function initMap() {
-            const map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: -34.397, lng: 150.644 },
-                zoom: 8
-            });
+            const mapDiv = document.getElementById('map');
+            if (!mapDiv) {
+                console.error("Map div not found");
+                return;
+            }
 
-            const infoWindow = new google.maps.InfoWindow();
+            const map = L.map('map').setView([51.505, -0.09], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
 
             const locationButton = document.createElement("button");
             locationButton.textContent = "Find Nearest Recycling Center";
             locationButton.classList.add("custom-map-control-button");
-            map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+            locationButton.style.position = 'absolute';
+            locationButton.style.top = '10px';
+            locationButton.style.left = '50%';
+            locationButton.style.transform = 'translateX(-50%)';
+            mapDiv.appendChild(locationButton);
 
             locationButton.addEventListener("click", () => {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
                         (position) => {
-                            const pos = {
-                                lat: position.coords.latitude,
-                                lng: position.coords.longitude
-                            };
-                            map.setCenter(pos);
+                            const pos = [position.coords.latitude, position.coords.longitude];
+                            map.setView(pos, 13);
 
-                            const request = {
-                                location: pos,
-                                radius: '5000',
-                                keyword: 'recycling center'
-                            };
-
-                            const service = new google.maps.places.PlacesService(map);
-                            service.nearbySearch(request, (results, status) => {
-                                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                                    for (let i = 0; i < results.length; i++) {
-                                        const place = results[i];
-                                        new google.maps.Marker({
-                                            position: place.geometry.location,
-                                            map: map,
-                                            title: place.name
-                                        });
-                                    }
-                                }
-                            });
+                            // Perform nearby search using Overpass API
+                            searchRecyclingCenters(pos, map);
                         },
                         () => {
-                            handleLocationError(true, infoWindow, map.getCenter());
+                            handleLocationError(true, map.getCenter());
                         }
                     );
                 } else {
-                    handleLocationError(false, infoWindow, map.getCenter());
+                    handleLocationError(false, map.getCenter());
                 }
             });
 
-            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-                infoWindow.setPosition(pos);
-                infoWindow.setContent(
-                    browserHasGeolocation
-                        ? "Error: The Geolocation service failed."
-                        : "Error: Your browser doesn't support geolocation."
-                );
-                infoWindow.open(map);
+            function handleLocationError(browserHasGeolocation, pos) {
+                const popup = L.popup()
+                    .setLatLng(pos)
+                    .setContent(browserHasGeolocation ?
+                        "Error: The Geolocation service failed." :
+                        "Error: Your browser doesn't support geolocation.")
+                    .openOn(map);
+            }
+
+            function searchRecyclingCenters(pos, map) {
+                const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node[amenity=recycling](around:5000,${pos[0]},${pos[1]});out;`;
+                
+                axios.get(overpassUrl).then(response => {
+                    const data = response.data;
+                    if (data && data.elements) {
+                        data.elements.forEach(element => {
+                            if (element.lat && element.lon) {
+                                L.marker([element.lat, element.lon]).addTo(map)
+                                    .bindPopup(`<b>Recycling Center</b><br>${element.tags.name || 'Unnamed'}`);
+                            }
+                        });
+                    }
+                }).catch(error => {
+                    console.error("Error fetching recycling centers:", error);
+                });
             }
         }
     </script>
+
 </head>
 
 <body>
@@ -364,7 +375,6 @@
 
     <footer id="footer"></footer>
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjAoAGCBYq6grg_aBga7w7DTnOhvCZFI8&callback=initMap&libraries=places"></script>
 </body>
 
 </html>
