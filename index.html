@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Casa Plastica is dedicated to fighting plastic pollution and promoting sustainability through innovative recycling solutions. Explore our services and initiatives.">
+
     <title>Casa Plastica</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     
@@ -13,20 +14,357 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"></noscript>
    
-    <link rel="stylesheet" href="styles.css">
-    
-    <script src="header.js" defer></script>
-    <script src="footer.js" defer></script>
-    <script src="main.js" defer></script>
-    <script src="map.js" defer></script>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos Globais */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #e4d7c5;
+            color: #333;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 5%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Estilos do Header */
+        header {
+            display: flex;
+            gap: 40px;
+            padding: 20px 40px;
+        }
+
+        header a {
+            display: flex;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2em;
+        }
+
+        /* Estilos da Navegação */
+        nav {
+            width: 100%;
+            justify-content: flex-start;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            align-self: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav ul {
+            list-style-type: none;
+            text-align: center;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #666;
+        }
+
+        main {
+            display: flex;
+            overflow: auto;
+            height: 100%;
+        }
+
+        section {
+            padding: 20px 40px;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        section h2 {
+            font-family: "Lobster", sans-serif;
+            font-style: normal;
+            line-height: 150%;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 #3d3933;
+            font-size: 7vw;
+            color: #FFF;
+        }
+
+        .block {
+            display: flex;
+        }
+
+        .logo {
+            height: 80px;
+        }
+
+        /* Estilos do Formulário de Contato */
+        form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+        }
+
+        form textarea {
+            height: 150px;
+        }
+
+        form button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #666;
+        }
+
+        /* Estilos do Rodapé */
+        footer {
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+            color: #333;
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        /* Media query for screens smaller than 700px */
+        @media (max-width: 700px) {
+            nav {
+                justify-content: center;
+            }
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+
+    <script>
+        const headerContent = `
+            <nav>
+                <a href="/" data-page="home"><img src="logo.png" alt="Casa Plastica" class="logo"></a>
+                <ul>
+                    <li><a href="#" data-page="home">Home</a></li>
+                    <li><a href="#" data-page="sobre">Sobre</a></li>
+                    <li><a href="#" data-page="servicos">Serviços</a></li>
+                    <li><a href="#" data-page="contato">Contato</a></li>
+                    <li><a href="#" data-page="map">Mapa</a></li>
+                </ul>
+            </nav>
+        `;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('header').innerHTML = headerContent;
+        });
+
+        const footerContent = `
+            <p>&copy; 2024 Projeto Casa Plastica. <br> Todos os direitos reservados.</p>
+        `;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('footer').innerHTML = footerContent;
+        });
+
+        const pageTextContent = {
+            home: {
+                title: "Bem-vindo à Casa Plastica",
+                body: [
+                    "Desafie a poluição plástica conosco.",
+                    "Nós oferecemos soluções inovadoras e acessíveis para a reciclagem de plásticos, promovendo a sustentabilidade e a preservação do meio ambiente.",
+                    "Explore nosso site para saber mais sobre nossos serviços, produtos e iniciativas."
+                ]
+            },
+            sobre: {
+                title: "Sobre Nós",
+                body: [
+                    "Somos a Casa Plastica, uma empresa empenhada em combater a poluição plástica e promover a sustentabilidade.",
+                    "Nosso projeto surgiu e segue com a ideia de construir uma casa feita inteiramente de plásticos retirados dos oceanos, mas evoluímos para muito mais.",
+                    "Desenvolvemos uma linha de máquinas e ferramentas para a reciclagem ser acessível a todos.",
+                    "Atualmente, desenvolvemos tecnologias e soluções para reciclagem em pequena escala, trabalhando em parceria com outras empresas, oferecendo consultorias, workshops e palestras sobre sustentabilidade e reciclagem de plásticos.",
+                    "Estamos comprometidos em tornar o mundo um lugar mais limpo e sustentável para as gerações futuras."
+                ]
+            },
+            servicos: {
+                title: "Nossos Serviços",
+                body: [
+                    "Oferecemos os seguintes serviços:",
+                    `<ul>
+                        <li>Construção de máquinas de reciclagem de plástico sob demanda: Desenvolvemos máquinas de reciclagem de plástico customizadas e trabalhamos no desenvolvimento da Nomad, que são projetadas para oferecer soluções práticas e acessíveis para o problema da poluição plástica.</li>
+                        <li>Palestras e apresentações sobre sustentabilidade e reciclagem de plásticos: Promovemos a conscientização ambiental oferecendo palestras e apresentações sobre sustentabilidade, reciclagem de plásticos e o uso de tecnologias inovadoras para lidar com esses desafios.</li>
+                    </ul>`
+                ]
+            },
+            contato: {
+                title: "Entre em Contato",
+                body: [
+                    `Entre em contato pelo <a href="https://wa.me/5522997747785">WhatsApp</a>`,
+                    `Ou nos escreva um <a href="mailto:pedrolucasp@gmail.com">email</a>`,
+                    `E siga-nos no Instagram: <a href="https://www.instagram.com/projetocasaplastica" target="_blank">@projetocasaplastica</a>`
+                ]
+            },
+            map: {
+                title: "Find Recycling Center",
+                body: [
+                    `<div id="map"></div>`
+                ]
+            }
+        };
+
+        function createTitleHTML(title) {
+            return `<h2>${title}</h2>`;
+        }
+
+        function createContentHTML(bodyArray) {
+            return bodyArray.map(block => `<div class="block">${block}</div>`).join('');
+        }
+
+        function loadPageContent(pageKey) {
+            const pageData = pageTextContent[pageKey];
+            if (!pageData) {
+                console.error(`No content found for page: ${pageKey}`);
+                const errorMsg = `Content not found.`;
+                return `<p>${errorMsg}</p>`;
+            }
+
+            const titleHTML = createTitleHTML(pageData.title);
+            const contentHTML = createContentHTML(pageData.body);
+
+            return `<section>${titleHTML + contentHTML}</section>`;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialPageContent = loadPageContent('home');
+            document.getElementById('main').innerHTML = initialPageContent;
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-page');
+                    const pageContent = loadPageContent(page);
+                    document.getElementById('main').innerHTML = pageContent;
+
+                    if (page === 'map') {
+                        // Ensure the map is initialized after the page content is loaded
+                        if (typeof google !== 'undefined') {
+                            initMap();
+                        }
+                    }
+                });
+            });
+        });
+
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8
+            });
+
+            const infoWindow = new google.maps.InfoWindow();
+
+            const locationButton = document.createElement("button");
+            locationButton.textContent = "Find Nearest Recycling Center";
+            locationButton.classList.add("custom-map-control-button");
+            map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+
+            locationButton.addEventListener("click", () => {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            const pos = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude
+                            };
+                            map.setCenter(pos);
+
+                            const request = {
+                                location: pos,
+                                radius: '5000',
+                                keyword: 'recycling center'
+                            };
+
+                            const service = new google.maps.places.PlacesService(map);
+                            service.nearbySearch(request, (results, status) => {
+                                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                                    for (let i = 0; i < results.length; i++) {
+                                        const place = results[i];
+                                        new google.maps.Marker({
+                                            position: place.geometry.location,
+                                            map: map,
+                                            title: place.name
+                                        });
+                                    }
+                                }
+                            });
+                        },
+                        () => {
+                            handleLocationError(true, infoWindow, map.getCenter());
+                        }
+                    );
+                } else {
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
+            });
+
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                infoWindow.setPosition(pos);
+                infoWindow.setContent(
+                    browserHasGeolocation
+                        ? "Error: The Geolocation service failed."
+                        : "Error: Your browser doesn't support geolocation."
+                );
+                infoWindow.open(map);
+            }
+        }
+    </script>
 </head>
 
 <body>
     <header id="header"></header>
 
-    <main id="main"></main>
+    <main id="main" class="container">
+        <!-- Main content will be loaded here -->
+    </main>
 
     <footer id="footer"></footer>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places"></script>
 </body>
 
 </html>
