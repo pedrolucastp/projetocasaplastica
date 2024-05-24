@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro's Personal Webpage</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Pedro's Personal Webpage</h1>
+    </header>
+
+    <nav>
+        <a href="../index.html#home">Home</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#find-center">Find Recycling Center</a>
+    </nav>
+
+    <div id="find-center" class="container">
+        <h2>Find Recycling Center</h2>
+        <div id="map"></div>
+    </div>
+
+    <script src="../map.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places">
+    </script>
+</body>
+</html>

@@ -9,12 +9,11 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #e4d7c5;
+    background-color: #f4f4f4;
     color: #333;
-    height: 100dvh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 5%;
 }
 
 .container {
@@ -28,6 +27,9 @@ header {
     display: flex;
     gap: 40px;
     padding: 20px 40px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
 }
 
 header a {
@@ -49,6 +51,7 @@ nav {
     align-self: center;
     gap: 30px;
     flex-wrap: wrap;
+    background-color: #333;
 }
 
 nav ul {
@@ -64,12 +67,15 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
     font-weight: bold;
 }
 
 nav ul li a:hover {
-    color: #666;
+    background-color: #ddd;
+    color: black;
 }
 
 main {
@@ -144,6 +150,12 @@ footer {
     color: #333;
     font-size: 12px;
     line-height: 16px;
+}
+
+/* Estilos do Mapa */
+#map {
+    height: 400px;
+    width: 100%;
 }
 
 /* Media query for screens smaller than 700px */

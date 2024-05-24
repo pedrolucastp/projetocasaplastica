@@ -34,6 +34,12 @@ const pageTextContent = {
             `Ou nos escreva um <a href="mailto:pedrolucasp@gmail.com">email</a>`,
             `E siga-nos no Instagram: <a href="https://www.instagram.com/projetocasaplastica" target="_blank">@projetocasaplastica</a>`
         ]
+    },
+    'find-center': {
+        title: "Find Recycling Center",
+        body: [
+            `<div id="map"></div>`
+        ]
     }
 };
 
@@ -49,7 +55,7 @@ function loadPageContent(pageKey) {
     const pageData = pageTextContent[pageKey];
     if (!pageData) {
         console.error(`No content found for page: ${pageKey}`);
-        const errorMsg = `Content not found.`
+        const errorMsg = `Content not found.`;
         return `<p>${errorMsg}</p>`;
     }
 
@@ -69,6 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const page = this.getAttribute('data-page');
             const pageContent = loadPageContent(page);
             document.getElementById('main').innerHTML = pageContent;
+
+            if (page === 'find-center') {
+                initMap();
+            }
         });
     });
 });
