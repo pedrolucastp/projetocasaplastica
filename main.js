@@ -93,4 +93,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const initialPageContent = loadPageContent('home');
-    document
+    document.getElementById('main').innerHTML = initialPageContent;
+
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const page = this.getAttribute('data-page');
+            const pageContent = loadPageContent(page);
+            document.getElementById('main').innerHTML = pageContent;
+
+            if (page === 'map') {
+                initMap();
+            }
+        });
+    });
+});
