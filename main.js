@@ -1,81 +1,96 @@
-const pageTextContent = {
-    home: {
-        title: "Bem-vindo à Casa Plastica",
-        body: [
-            "Desafie a poluição plástica conosco.",
-            "Nós oferecemos soluções inovadoras e acessíveis para a reciclagem de plásticos, promovendo a sustentabilidade e a preservação do meio ambiente.",
-            "Explore nosso site para saber mais sobre nossos serviços, produtos e iniciativas."
-        ]
-    },
-    sobre: {
-        title: "Sobre Nós",
-        body: [
-            "Somos a Casa Plastica, uma empresa empenhada em combater a poluição plástica e promover a sustentabilidade.",
-            "Nosso projeto surgiu e segue com a ideia de construir uma casa feita inteiramente de plásticos retirados dos oceanos, mas evoluímos para muito mais.",
-            "Desenvolvemos uma linha de máquinas e ferramentas para a reciclagem ser acessível a todos.",
-            "Atualmente, desenvolvemos tecnologias e soluções para reciclagem em pequena escala, trabalhando em parceria com outras empresas, oferecendo consultorias, workshops e palestras sobre sustentabilidade e reciclagem de plásticos.",
-            "Estamos comprometidos em tornar o mundo um lugar mais limpo e sustentável para as gerações futuras."
-        ]
-    },
-    servicos: {
-        title: "Nossos Serviços",
-        body: [
-            "Oferecemos os seguintes serviços:",
-            `<ul>
-                <li>Construção de máquinas de reciclagem de plástico sob demanda: Desenvolvemos máquinas de reciclagem de plástico customizadas e trabalhamos no desenvolvimento da Nomad, que são projetadas para oferecer soluções práticas e acessíveis para o problema da poluição plástica.</li>
-                <li>Palestras e apresentações sobre sustentabilidade e reciclagem de plásticos: Promovemos a conscientização ambiental oferecendo palestras e apresentações sobre sustentabilidade, reciclagem de plásticos e o uso de tecnologias inovadoras para lidar com esses desafios.</li>
-            </ul>`
-        ]
-    },
-    contato: {
-        title: "Entre em Contato",
-        body: [
-            `Entre em contato pelo <a href="https://wa.me/5522997747785">WhatsApp</a>`,
-            `Ou nos escreva um <a href="mailto:pedrolucasp@gmail.com">email</a>`,
-            `E siga-nos no Instagram: <a href="https://www.instagram.com/projetocasaplastica" target="_blank">@projetocasaplastica</a>`
-        ]
-    }
-};
-
-function createTitleHTML(title) {
-    return `<h2>${title}</h2>`;
-}
-
-function createContentHTML(bodyArray) {
-    return bodyArray.map(block => `<div class="block">${block}</div>`).join('');
-}
-
-function loadPageContent(pageKey) {
-    const pageData = pageTextContent[pageKey];
-    if (!pageData) {
-        console.error(`No content found for page: ${pageKey}`);
-        const errorMsg = `Content not found.`;
-        return `<p>${errorMsg}</p>`;
-    }
-
-    const titleHTML = createTitleHTML(pageData.title);
-    const contentHTML = createContentHTML(pageData.body);
-
-    return `<section>${titleHTML + contentHTML}</section>`;
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-    const initialPageContent = loadPageContent('home');
-    document.getElementById('main').innerHTML = initialPageContent;
+    const headerContent = createHeader();
+    const footerContent = createFooter();
 
-    document.querySelectorAll('nav a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const page = this.getAttribute('data-page');
-            const pageContent = loadPageContent(page);
-            document.getElementById('main').innerHTML = pageContent;
+    document.getElementById('header').innerHTML = headerContent;
+    document.getElementById('footer').innerHTML = footerContent;
 
-            if (page === 'find-center') {
-                // Ensure the map is initialized after the page content is loaded
-                if (typeof google !== 'undefined') {
-                    initMap();
-                }
+    function createHeader() {
+        return `
+            <nav>
+                <a href="/" data-page="home"><img src="logo.png" alt="Casa Plastica" class="logo"></a>
+                <ul>
+                    <li><a href="#" data-page="home">Home</a></li>
+                    <li><a href="#" data-page="sobre">Sobre</a></li>
+                    <li><a href="#" data-page="servicos">Serviços</a></li>
+                    <li><a href="#" data-page="contato">Contato</a></li>
+                    <li><a href="#" data-page="map">Mapa</a></li>
+                </ul>
+            </nav>
+        `;
+    }
+
+    function createFooter() {
+        return `
+            <p>&copy; 2024 Projeto Casa Plastica. <br> Todos os direitos reservados.</p>
+        `;
+    }
+
+    function initMap() {
+        const mapDiv = document.getElementById('map');
+        if (!mapDiv) {
+            console.error("Map div not found");
+            return;
+        }
+
+        const map = L.map('map').setView([51.505, -0.09], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        const locationButton = document.createElement("button");
+        locationButton.textContent = "Find Nearest Recycling Center";
+        locationButton.classList.add("custom-map-control-button");
+        mapDiv.appendChild(locationButton);
+
+        locationButton.addEventListener("click", () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const pos = [position.coords.latitude, position.coords.longitude];
+                        map.setView(pos, 13);
+
+                        // Perform nearby search using Overpass API
+                        const radius = document.getElementById('radius').value;
+                        searchRecyclingCenters(pos, radius, map);
+                    },
+                    () => {
+                        handleLocationError(true, map.getCenter());
+                    }
+                );
+            } else {
+                handleLocationError(false, map.getCenter());
             }
         });
-    });
-});
+
+        function handleLocationError(browserHasGeolocation, pos) {
+            const popup = L.popup()
+                .setLatLng(pos)
+                .setContent(browserHasGeolocation ?
+                    "Error: The Geolocation service failed." :
+                    "Error: Your browser doesn't support geolocation.")
+                .openOn(map);
+        }
+
+        function searchRecyclingCenters(pos, radius, map) {
+            const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node[amenity=reciclagem](around:${radius},${pos[0]},${pos[1]});out;`;
+            
+            axios.get(overpassUrl).then(response => {
+                const data = response.data;
+                if (data && data.elements) {
+                    data.elements.forEach(element => {
+                        if (element.lat && element.lon) {
+                            L.marker([element.lat, element.lon]).addTo(map)
+                                .bindPopup(`<b>Recycling Center</b><br>${element.tags.name || 'Unnamed'}`);
+                        }
+                    });
+                }
+            }).catch(error => {
+                console.error("Error fetching recycling centers:", error);
+            });
+        }
+    }
+
+    const initialPageContent = loadPageContent('home');
+    document

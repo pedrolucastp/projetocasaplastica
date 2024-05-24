@@ -5,15 +5,16 @@
     box-sizing: border-box;
 }
 
-/* Estilos Globais */
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4;
+    background-color: #e4d7c5;
     color: #333;
     height: 100vh;
     display: flex;
     flex-direction: column;
+    padding: 5%;
 }
 
 .container {
@@ -22,14 +23,11 @@ body {
     padding: 0 20px;
 }
 
-/* Estilos do Header */
+/* Header Styles */
 header {
     display: flex;
     gap: 40px;
     padding: 20px 40px;
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
 }
 
 header a {
@@ -41,7 +39,7 @@ header h1 {
     font-size: 2em;
 }
 
-/* Estilos da Navegação */
+/* Navigation Styles */
 nav {
     width: 100%;
     justify-content: flex-start;
@@ -51,7 +49,6 @@ nav {
     align-self: center;
     gap: 30px;
     flex-wrap: wrap;
-    background-color: #333;
 }
 
 nav ul {
@@ -67,17 +64,15 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: white;
-    padding: 14px 20px;
-    text-align: center;
+    color: #333;
     font-weight: bold;
 }
 
 nav ul li a:hover {
-    background-color: #ddd;
-    color: black;
+    color: #666;
 }
 
+/* Main Styles */
 main {
     display: flex;
     overflow: auto;
@@ -92,7 +87,8 @@ section {
     flex-direction: column;
 }
 
-section h2 {
+/* Typography */
+h2 {
     font-family: "Lobster", sans-serif;
     font-style: normal;
     line-height: 150%;
@@ -103,15 +99,17 @@ section h2 {
     color: #FFF;
 }
 
+/* Reusable Block */
 .block {
     display: flex;
 }
 
+/* Logo */
 .logo {
     height: 80px;
 }
 
-/* Estilos do Formulário de Contato */
+/* Form Styles */
 form label {
     display: block;
     margin-bottom: 10px;
@@ -142,7 +140,7 @@ form button:hover {
     background-color: #666;
 }
 
-/* Estilos do Rodapé */
+/* Footer Styles */
 footer {
     padding: 20px 0;
     text-align: center;
@@ -152,15 +150,34 @@ footer {
     line-height: 16px;
 }
 
-/* Estilos do Mapa */
-#map {
-    height: 400px;
-    width: 100%;
-}
-
 /* Media query for screens smaller than 700px */
 @media (max-width: 700px) {
     nav {
         justify-content: center;
     }
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+.custom-map-control-button {
+    background-color: white;
+    border: 2px solid #4CAF50;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.3);
+    cursor: pointer;
+    margin-bottom: 22px;
+    text-align: center;
+    padding: 6px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.custom-map-control-button:hover {
+    background-color: #4CAF50;
+    color: white;
 }
