@@ -8,7 +8,7 @@ function initMap() {
         return;
     }
 
-    map = L.map('map').setView([51.505, -0.09], 13);
+    map = L.map('map').setView([-22, -42], 10);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -57,7 +57,7 @@ function searchLocations() {
         return;
     }
 
-    const radius = document.getElementById('radius') ? document.getElementById('radius').value : 5000;
+    const radius = document.getElementById('radius') ? document.getElementById('radius').value : 50000;
     searchRecyclingCenters(userPosition, radius, map);
     searchGooglePlaces(userPosition, radius, map);
 }
@@ -91,38 +91,41 @@ function searchRecyclingCenters(pos, radius, map) {
 
 function searchGooglePlaces(pos, radius, map) {
     const service = new google.maps.places.PlacesService(document.createElement('div'));
-    const request = {
-        location: { lat: pos[0], lng: pos[1] },
-        radius: radius,
-        keyword: 'reciclagem',
-        language: 'pt-BR'
-    };
+    const keywords = ['reciclagem', 'recycling', 'waste disposal'];
+    keywords.forEach(keyword => {
+        const request = {
+            location: { lat: pos[0], lng: pos[1] },
+            radius: radius,
+            query: keyword,
+            language: 'pt-BR'
+        };
 
-    console.log(`Querying Google Places API with request:`, request);
+        console.log(`Querying Google Places API with request:`, request);
 
-    service.nearbySearch(request, (results, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            console.log(`Google Places API response:`, results);
-            results.forEach(place => {
-                if (place.geometry && place.geometry.location) {
-                    if (place.types && place.types.length > 0 && place.types[0] === "lodging") return;
-                    const latLng = [place.geometry.location.lat(), place.geometry.location.lng()];
-                    const amenity = place.types && place.types.length > 0 ? place.types[0] : 'reciclagem';
-                    const element = {
-                        lat: place.geometry.location.lat(),
-                        lon: place.geometry.location.lng(),
-                        tags: { name: place.name }
-                    };
-                    L.marker(latLng).addTo(map)
-                        .bindPopup(createPopupContent(place.name, amenity, 'Google Places API', element));
-                    addResultToList(place.name, amenity, 'Google Places API', element);
-                }
-            });
-        } else {
-            console.error(`Google Places API error: ${status}`);
-        }
+        service.textSearch(request, (results, status) => {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                console.log(`Google Places API response for keyword '${keyword}':`, results);
+                results.forEach(place => {
+                    if (place.geometry && place.geometry.location) {
+                        const latLng = [place.geometry.location.lat(), place.geometry.location.lng()];
+                        const amenity = keyword;
+                        const element = {
+                            lat: place.geometry.location.lat(),
+                            lon: place.geometry.location.lng(),
+                            tags: { name: place.name }
+                        };
+                        L.marker(latLng).addTo(map)
+                            .bindPopup(createPopupContent(place.name, amenity, 'Google Places API', element));
+                        addResultToList(place.name, amenity, 'Google Places API', element);
+                    }
+                });
+            } else {
+                console.error(`Google Places API error for keyword '${keyword}': ${status}`);
+            }
+        });
     });
 }
+
 
 function addResultToList(name, amenity, api, element) {
     const resultsPanel = document.getElementById('results-panel');

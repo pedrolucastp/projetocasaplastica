@@ -85,6 +85,10 @@ section {
     flex-direction: column;
 }
 
+section.hidden {
+    display: none;
+}
+
 section h2 {
     font-family: "Lobster", sans-serif;
     font-style: normal;
@@ -150,8 +154,4 @@ footer {
     nav {
         justify-content: center;
     }
-}
-
-.hidden {
-    display: none;
 }
