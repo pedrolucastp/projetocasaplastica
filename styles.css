@@ -14,12 +14,9 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 5%;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
     padding: 0 20px;
 }
 
@@ -85,17 +82,18 @@ section {
     width: 100%;
     height: 100%;
     flex-direction: column;
+    gap: 20px;
 }
 
 /* Typography */
 h2 {
     font-family: "Lobster", sans-serif;
     font-style: normal;
-    line-height: 150%;
+    line-height: 100%;
     font-weight: 400;
     letter-spacing: 2px;
     text-shadow: 2px 2px 0 #3d3933;
-    font-size: 7vw;
+    font-size: 5vw;
     color: #FFF;
 }
 
@@ -160,6 +158,7 @@ footer {
 #map {
     height: 400px;
     width: 100%;
+    position: relative;
 }
 
 .custom-map-control-button {
@@ -175,6 +174,7 @@ footer {
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1000; /* Ensure the button is always on top */
 }
 
 .custom-map-control-button:hover {

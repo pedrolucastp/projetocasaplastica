@@ -48,13 +48,14 @@ const pageTextContent = {
         ]
     },
     map: {
-        title: "Find Recycling Center",
+        title: "Encontre um Centro de Reciclagem",
         body: [
+            `<span>Este é um recurso em desenvolvimento.</span>`,
             `<div id="map"></div>`,
             `<div class="radius-container">
-                <label for="radius">Radius (meters): </label>
+                <label for="radius">Metros: </label>
                 <input type="number" id="radius" name="radius" value="5000">
-                <button id="searchButton" class="button">Search</button>
+                <button id="searchButton" class="button">Buscar</button>
             </div>`
         ]
     }
