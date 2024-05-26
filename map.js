@@ -1,6 +1,3 @@
-let userPosition = null;
-let map = null;
-
 function initMap() {
     const mapDiv = document.getElementById('map');
     if (!mapDiv) {
@@ -8,31 +5,39 @@ function initMap() {
         return;
     }
 
-    map = L.map('map').setView([-22, -42], 10);
+    map = L.map('map').setView([-22, -42], 3);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                userPosition = [position.coords.latitude, position.coords.longitude];
+                map.setView(userPosition, 13);
+
+                const userLocationIcon = L.divIcon({
+                    className: 'user-location-marker'
+                });
+
+                L.marker(userPosition, { icon: userLocationIcon }).addTo(map)
+                    .bindPopup('Your location');
+                searchLocations();
+            },
+            (error) => {
+                console.error("Geolocation error:", error);
+                handleLocationError(true, map.getCenter());
+            }
+        );
+    } else {
+        handleLocationError(false, map.getCenter());
+    }
+
     const locationButton = document.getElementById('locationButton');
     locationButton.addEventListener("click", () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    userPosition = [position.coords.latitude, position.coords.longitude];
-                    map.setView(userPosition, 13);
-                    L.marker(userPosition, {icon: L.icon({iconUrl: 'user-location-icon.png', iconSize: [25, 41], iconAnchor: [12, 41]})}).addTo(map)
-                        .bindPopup('Your location');
-                    searchLocations();
-                },
-                (error) => {
-                    console.error("Geolocation error:", error);
-                    handleLocationError(true, map.getCenter());
-                }
-            );
-        } else {
-            handleLocationError(false, map.getCenter());
-        }
+        const radius = document.getElementById('radius') ? document.getElementById('radius').value : 5000;
+        searchLocations(radius);
     });
 }
 
@@ -53,13 +58,12 @@ function createPopupContent(name, amenity, api, element) {
             <b>Location:</b> ${latLng}`;
 }
 
-function searchLocations() {
+function searchLocations(radius = 5000) {
     if (!userPosition) {
         console.error("User location not available.");
         return;
     }
 
-    const radius = document.getElementById('radius') ? document.getElementById('radius').value : 5000;
     searchRecyclingCenters(userPosition, radius, map);
     searchGooglePlaces(userPosition, radius, map);
 }

@@ -41,3 +41,12 @@
 .custom-map-control-button:hover {
     background-color: #f0f0f0;
 }
+
+.user-location-marker {
+    background-color: red;
+    border: 2px solid white;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    display: inline-block; /* Ensures the marker is displayed correctly */
+}
