@@ -126,7 +126,6 @@ function searchGooglePlaces(pos, radius, map) {
     });
 }
 
-
 function addResultToList(name, amenity, api, element) {
     const resultsPanel = document.getElementById('results-panel');
     const resultCard = document.createElement('div');
