@@ -4,13 +4,35 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
             const page = this.getAttribute('data-page');
-            loadPageContent(page);
+            if (page === 'map-section') {
+                requestUserLocation();
+            } else {
+                loadPageContent(page);
+            }
         });
     });
 
     // Load initial content
     loadPageContent('home');
 });
+
+function requestUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                userPosition = [position.coords.latitude, position.coords.longitude];
+                loadPageContent('map-section');
+            },
+            (error) => {
+                console.error("Geolocation error:", error);
+                loadPageContent('map-section'); // Load map-section even if geolocation fails
+            }
+        );
+    } else {
+        console.warn("Geolocation not supported");
+        loadPageContent('map-section'); // Load map-section if geolocation is not supported
+    }
+}
 
 function loadPageContent(pageKey) {
     // Hide all sections
