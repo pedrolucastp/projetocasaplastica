@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Casa Plastica is dedicated to fighting plastic pollution and promoting sustainability through innovative recycling solutions. Explore our services and initiatives.">
-
     <title>Casa Plastica</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     
@@ -13,27 +12,80 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"></noscript>
-
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
     <link rel="stylesheet" href="styles.css" />
-
+    <link rel="stylesheet" href="map.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body>
-    <header id="header"></header>
+    <header id="header">
+        <nav>
+            <a href="#" data-page="home"><img src="logo.png" alt="Casa Plastica" class="logo"></a>
+            <ul>
+                <li><a href="#" data-page="home">Home</a></li>
+                <li><a href="#" data-page="sobre">Sobre</a></li>
+                <li><a href="#" data-page="servicos">Serviços</a></li>
+                <li><a href="#" data-page="contato">Contato</a></li>
+                <li><a href="#" data-page="map-section">Mapa</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main id="main" class="container">
-        <!-- Main content will be loaded here -->
+        <section id="home">
+            <h2>Bem-vindo à Casa Plastica</h2>
+            <p>Desafie a poluição plástica conosco.</p>
+            <p>Nós oferecemos soluções inovadoras e acessíveis para a reciclagem de plásticos, promovendo a sustentabilidade e a preservação do meio ambiente.</p>
+            <p>Explore nosso site para saber mais sobre nossos serviços, produtos e iniciativas.</p>
+        </section>
+        
+        <section id="sobre" class="hidden">
+            <h2>Sobre Nós</h2>
+            <p>Somos a Casa Plastica, uma empresa empenhada em combater a poluição plástica e promover a sustentabilidade.</p>
+            <p>Nosso projeto surgiu e segue com a ideia de construir uma casa feita inteiramente de plásticos retirados dos oceanos, mas evoluímos para muito mais.</p>
+            <p>Desenvolvemos uma linha de máquinas e ferramentas para a reciclagem ser acessível a todos.</p>
+            <p>Atualmente, desenvolvemos tecnologias e soluções para reciclagem em pequena escala, trabalhando em parceria com outras empresas, oferecendo consultorias, workshops e palestras sobre sustentabilidade e reciclagem de plásticos.</p>
+            <p>Estamos comprometidos em tornar o mundo um lugar mais limpo e sustentável para as gerações futuras.</p>
+        </section>
+
+        <section id="servicos" class="hidden">
+            <h2>Nossos Serviços</h2>
+            <ul>
+                <li>Construção de máquinas de reciclagem de plástico sob demanda: Desenvolvemos máquinas de reciclagem de plástico customizadas e trabalhamos no desenvolvimento da Nomad, que são projetadas para oferecer soluções práticas e acessíveis para o problema da poluição plástica.</li>
+                <li>Palestras e apresentações sobre sustentabilidade e reciclagem de plásticos: Promovemos a conscientização ambiental oferecendo palestras e apresentações sobre sustentabilidade, reciclagem de plásticos e o uso de tecnologias inovadoras para lidar com esses desafios.</li>
+            </ul>
+        </section>
+
+        <section id="contato" class="hidden">
+            <h2>Entre em Contato</h2>
+            <p>Entre em contato pelo <a href="https://wa.me/5522997747785">WhatsApp</a></p>
+            <p>Ou nos escreva um <a href="mailto:pedrolucasp@gmail.com">email</a></p>
+            <p>E siga-nos no Instagram: <a href="https://www.instagram.com/projetocasaplastica" target="_blank">@projetocasaplastica</a></p>
+        </section>
+
+        <section id="map-section" class="hidden">
+            <div id="map-container">
+                <div id="results-panel"></div>
+                <div id="map"></div>
+            </div>
+            <div id="controls">
+                <input type="number" id="radius" name="radius" value="5000" placeholder="Enter radius in meters">
+                <button id="locationButton" class="custom-map-control-button">Encontre uma reciclagem próxima</button>
+            </div>
+        </section>
     </main>
 
-    <footer id="footer"></footer>
+    <footer id="footer">
+        <p>&copy; 2024 Projeto Casa Plastica. <br> Todos os direitos reservados.</p>
+    </footer>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script async defer loading=async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjAoAGCBYq6grg_aBga7w7DTnOhvCZFI8&libraries=places"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjAoAGCBYq6grg_aBga7w7DTnOhvCZFI8&libraries=places"></script>
     <script src="content.js"></script>
     <script src="main.js"></script>
+    <script src="map.js"></script>
 </body>
 
 </html>

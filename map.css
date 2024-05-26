@@ -1,0 +1,43 @@
+#map-container {
+    display: flex;
+    width: 100%;
+}
+
+#map {
+    height: 400px;
+    width: 70%;
+}
+
+#results-panel {
+    width: 30%;
+    height: 400px;
+    overflow-y: scroll;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.result-card {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#controls {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.custom-map-control-button {
+    background-color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.custom-map-control-button:hover {
+    background-color: #f0f0f0;
+}
