@@ -21,6 +21,8 @@ function initMap() {
                 (position) => {
                     userPosition = [position.coords.latitude, position.coords.longitude];
                     map.setView(userPosition, 13);
+                    L.marker(userPosition, {icon: L.icon({iconUrl: 'user-location-icon.png', iconSize: [25, 41], iconAnchor: [12, 41]})}).addTo(map)
+                        .bindPopup('Your location');
                     searchLocations();
                 },
                 (error) => {
@@ -57,7 +59,7 @@ function searchLocations() {
         return;
     }
 
-    const radius = document.getElementById('radius') ? document.getElementById('radius').value : 50000;
+    const radius = document.getElementById('radius') ? document.getElementById('radius').value : 5000;
     searchRecyclingCenters(userPosition, radius, map);
     searchGooglePlaces(userPosition, radius, map);
 }
@@ -92,7 +94,7 @@ function searchRecyclingCenters(pos, radius, map) {
 function searchGooglePlaces(pos, radius, map) {
     const service = new google.maps.places.PlacesService(document.createElement('div'));
     const keywords = ['reciclagem', 'recycling', 'waste disposal'];
-    const fields = ['name', 'geometry', 'place_id']; // Specify only the fields you need
+    const fields = ['name', 'geometry']; // Specify only the fields you need
 
     keywords.forEach(keyword => {
         const request = {
@@ -128,7 +130,6 @@ function searchGooglePlaces(pos, radius, map) {
         });
     });
 }
-
 
 function addResultToList(name, amenity, api, element) {
     const resultsPanel = document.getElementById('results-panel');
