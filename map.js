@@ -92,11 +92,14 @@ function searchRecyclingCenters(pos, radius, map) {
 function searchGooglePlaces(pos, radius, map) {
     const service = new google.maps.places.PlacesService(document.createElement('div'));
     const keywords = ['reciclagem', 'recycling', 'waste disposal'];
+    const fields = ['name', 'geometry', 'place_id']; // Specify only the fields you need
+
     keywords.forEach(keyword => {
         const request = {
             location: { lat: pos[0], lng: pos[1] },
             radius: radius,
             query: keyword,
+            fields: fields,
             language: 'pt-BR'
         };
 
@@ -125,6 +128,7 @@ function searchGooglePlaces(pos, radius, map) {
         });
     });
 }
+
 
 function addResultToList(name, amenity, api, element) {
     const resultsPanel = document.getElementById('results-panel');
