@@ -66,13 +66,13 @@
         </section>
 
         <section id="map-section" class="hidden">
-            <div id="map-container">
-                <div id="results-panel"></div>
-                <div id="map"></div>
-            </div>
             <div id="controls">
                 <input type="number" id="radius" name="radius" value="5000" placeholder="Enter radius in meters">
                 <button id="locationButton" class="custom-map-control-button">Encontre uma reciclagem próxima</button>
+            </div>
+            <div id="map-container">
+                <div id="map"></div>
+                <div id="results-panel"></div>
             </div>
         </section>
     </main>
@@ -84,7 +84,6 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjAoAGCBYq6grg_aBga7w7DTnOhvCZFI8&libraries=places&loading=async"></script>
-    <!-- <script src="content.js"></script> -->
     <script src="main.js"></script>
     <script src="map.js"></script>
 </body>

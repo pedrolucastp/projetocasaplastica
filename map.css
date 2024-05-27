@@ -50,3 +50,14 @@
     width: 25px;
     display: inline-block; /* Ensures the marker is displayed correctly */
 }
+
+/* Media query for screens smaller than 700px */
+@media (max-width: 700px) {
+   #map-container {
+    flex-direction: column;
+   }
+   #results-panel, #map {
+    width: 100%;
+   }
+}
+
