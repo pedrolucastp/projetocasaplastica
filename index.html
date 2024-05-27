@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"></noscript>
+    
 
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="map.css" />
@@ -66,14 +67,17 @@
         </section>
 
         <section id="map-section" class="hidden">
+            <h2>Pontos de reciclagem</h2>
             <div id="controls">
-                <input type="number" id="radius" name="radius" value="5000" placeholder="Enter radius in meters">
+                <input type="number" id="radius" name="radius" value="5" min="1" placeholder="Enter radius in km">
                 <button id="locationButton" class="custom-map-control-button">Encontre uma reciclagem próxima</button>
             </div>
             <div id="map-container">
-                <div id="map"></div>
                 <div id="results-panel"></div>
+                <div id="map"></div>
             </div>
+            <p>Esta é uma ferramenta em desenvolvimento e os resultados podem estar desatualizados.</p>
+
         </section>
     </main>
 
@@ -86,6 +90,7 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjAoAGCBYq6grg_aBga7w7DTnOhvCZFI8&libraries=places&loading=async"></script>
     <script src="main.js"></script>
     <script src="map.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 
 </html>

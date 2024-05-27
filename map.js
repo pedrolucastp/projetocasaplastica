@@ -2,6 +2,8 @@ let userPosition = null;
 let map = null;
 let addedLocations = new Set();
 
+const openAiApiKey = '';
+
 function initMap() {
     const mapDiv = document.getElementById('map');
     if (!mapDiv) {
@@ -9,23 +11,21 @@ function initMap() {
         return;
     }
 
-    map = L.map('map')
-    
+    map = L.map('map').setView([-22, -42], 4);
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-    
-    map.setView([-22, -42], 3);
 
     const locationButton = document.getElementById('locationButton');
     locationButton.addEventListener("click", () => {
-        const userPermission = window.confirm("Do you allow us to use your location?");
+        const userPermission = userPosition === null ? window.confirm("Do you allow us to use your location?") : true;
         if (userPermission) {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         userPosition = [position.coords.latitude, position.coords.longitude];
-                        map.setView(userPosition, 10);
+                        map.setView(userPosition, 12);
 
                         const userLocationIcon = L.divIcon({
                             className: 'user-location-marker'
@@ -33,8 +33,8 @@ function initMap() {
 
                         L.marker(userPosition, { icon: userLocationIcon }).addTo(map)
                             .bindPopup('Your location');
-                        const radius = document.getElementById('radius') ? document.getElementById('radius').value : 5000;
-                        searchLocations(radius);
+                        const radius = document.getElementById('radius') ? document.getElementById('radius').value : 5;
+                        searchLocations(radius*1000);
                     },
                     (error) => {
                         console.error("Geolocation error:", error);
@@ -57,25 +57,9 @@ function handleLocationError(browserHasGeolocation, pos) {
         .openOn(map);
 }
 
-function createPopupContent(name, element) {
-    const latLng = `${element.lat.toFixed(6)}, ${element.lon.toFixed(6)}`;
-    const address = element.formatted_address ? element.formatted_address : 'No address available';
-    const businessStatus = element.business_status ? element.business_status : 'No status available';
-    const isOpen = element.isOpen ? (element.isOpen() ? 'Open now' : 'Closed') : 'Opening hours not available';
-    const rating = element.rating ? element.rating : 'No rating';
-    const userRatingsTotal = element.user_ratings_total ? element.user_ratings_total : 'No reviews';
-    const photoUrl = element.photos && element.photos.length > 0 && element.photos[0].raw_reference ? element.photos[0].raw_reference.fife_url : '';
 
-    return `<b>${name}</b><br>
-            <b>Location:</b> ${latLng}<br>
-            <b>Address:</b> ${address}<br>
-            <b>Business Status:</b> ${businessStatus}<br>
-            <b>Opening Hours:</b> ${isOpen}<br>
-            <b>Rating:</b> ${rating} (${userRatingsTotal} reviews)<br>
-            ${photoUrl ? `<img src="${photoUrl}" alt="${name} photo" style="width:100px;height:100px;"><br>` : ''}`;
-}
 
-function searchLocations(radius = 5000) {
+function searchLocations(radius) {
     if (!userPosition) {
         console.error("User location not available.");
         return;
@@ -83,6 +67,7 @@ function searchLocations(radius = 5000) {
 
     searchRecyclingCenters(userPosition, radius, map);
     searchGooglePlaces(userPosition, radius, map);
+    //searchAiModel(userPosition, radius, map);
 }
 
 const amenities = ['recycling'];
@@ -144,7 +129,6 @@ function searchGooglePlaces(pos, radius, map) {
                         service.getDetails(detailsRequest, (placeDetails, status) => {
                             if (status === google.maps.places.PlacesServiceStatus.OK) {
                                 const latLng = [placeDetails.geometry.location.lat(), placeDetails.geometry.location.lng()];
-                                const amenity = keyword;
                                 const element = {
                                     lat: placeDetails.geometry.location.lat(),
                                     lon: placeDetails.geometry.location.lng(),
@@ -173,6 +157,62 @@ function searchGooglePlaces(pos, radius, map) {
     });
 }
 
+function searchAiModel(pos, radius, map) {
+    const prompt = `Find only existing recycling centers within ${radius} meters of latitude ${pos[0]} and longitude ${pos[1]}. Provide a list called Locations, the list must have objects including the name, address, and the latitude and longitude for each location.`;
+
+    axios.post('https://api.openai.com/v1/chat/completions', {
+        max_tokens: 300,
+        model: 'gpt-4o',
+        messages: [{"role": "user", "content": `${prompt}`}],
+    }, {
+        headers: {
+            'Authorization': `Bearer ${openAiApiKey}`,
+            'Content-Type': 'application/json'
+        }
+    }).then(response => {
+        const data = response.data.choices[0].message.content.trim();
+        console.log('AI Model response:', data);
+
+        let aiResults;
+        try {
+            aiResults = JSON.parse(data).Locations;
+        } catch (error) {
+            console.error('Error parsing AI response:', error);
+            return;
+        }
+
+        aiResults.forEach(result => {
+            console.log('Processing result:', result); // Debugging statement
+            if (result.latitude && result.longitude && !addedLocations.has(result.name)) {
+                addedLocations.add(result.name);
+                L.marker([result.latitude, result.longitude]).addTo(map)
+                    .bindPopup(createPopupContent(result.name, result));
+                addResultToList(result.name, result);
+            }
+        });
+    }).catch(error => {
+        console.error('Error fetching data from OpenAI API:', error);
+    });
+}
+
+function createPopupContent(name, element) {
+    const latLng = `${element.lat.toFixed(6)}, ${element.lon.toFixed(6)}`;
+    const address = element.formatted_address ? element.formatted_address : 'No address available';
+    const businessStatus = element.business_status ? element.business_status : 'No status available';
+    const isOpen = element.isOpen ? (element.isOpen() ? 'Open now' : 'Closed') : 'Opening hours not available';
+    const rating = element.rating ? element.rating : 'No rating';
+    const userRatingsTotal = element.user_ratings_total ? element.user_ratings_total : 'No reviews';
+    const photoUrl = element.photos && element.photos.length > 0 && element.photos[0].raw_reference ? element.photos[0].raw_reference.fife_url : '';
+
+    return `<b>${name}</b><br>
+            <b>Location:</b> ${latLng}<br>
+            <b>Address:</b> ${address}<br>
+            <b>Business Status:</b> ${businessStatus}<br>
+            <b>Opening Hours:</b> ${isOpen}<br>
+            <b>Rating:</b> ${rating} (${userRatingsTotal} reviews)<br>
+            ${photoUrl ? `<img src="${photoUrl}" alt="${name} photo" style="width:100px;height:100px;"><br>` : ''}`;
+}
+
 function addResultToList(name, element) {
     const resultsPanel = document.getElementById('results-panel');
     const resultCard = document.createElement('div');
@@ -195,6 +235,3 @@ function addResultToList(name, element) {
         ${photoUrl ? `<img src="${photoUrl}" alt="${name} photo" style="width:100px;height:100px;"><br>` : ''}`;
     resultsPanel.appendChild(resultCard);
 }
-
-//window.onload = initMap;
-

@@ -54,7 +54,7 @@ nav ul {
     list-style-type: none;
     text-align: center;
     display: flex;
-    gap: 30px;
+    gap: 10px;
 }
 
 nav ul li {
@@ -98,6 +98,7 @@ section h2 {
     text-shadow: 2px 2px 0 #3d3933;
     font-size: 5vw;
     color: #FFF;
+    margin-bottom: 20px ;
 }
 
 .block {
