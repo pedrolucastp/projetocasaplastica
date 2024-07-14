@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
 /* Estilos Globais */
@@ -14,6 +15,38 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+/* Splash Screen Styles */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeOut 3s ease-out 1 forwards;
+}
+
+.splash-logo {
+    width: 50%; /* Adjust size as needed */
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
 .container {
@@ -108,38 +141,6 @@ section h2 {
 .logo {
     height: 80px;
 }
-
-/* Estilos do Formulário de Contato */
-form label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-form input[type="text"],
-form input[type="email"],
-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-}
-
-form textarea {
-    height: 150px;
-}
-
-form button {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #666;
-}
-
 /* Estilos do Rodapé */
 footer {
     padding: 20px 0;
@@ -155,4 +156,9 @@ footer {
     nav {
         justify-content: center;
     }
+
+section h2 {
+    font-size: 10vw;
+}
+
 }
