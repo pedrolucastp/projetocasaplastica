@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House of Innovation Saquarema</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .slide {
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .slide h2 {
+            font-size: 1.8em;
+            color: #ff6f61;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            min-height: calc(2 * 1.2em);
+            /* At least 2 lines of height */
+        }
+
+        .content {
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+
+        .content p,
+        .content ul {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .content ul {
+            padding-left: 20px;
+        }
+
+        /* .slide img {
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+            max-height: 200px; 
+        } */
+
+
+        .doodle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        css-doodle {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .highlight {
+            color: #ff6f61;
+            font-weight: bold;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #e65c54;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            grid-column: span 2;
+        }
+
+        /* Retro surf style */
+        body {
+            background-color: #faf3e0;
+        }
+
+        .slide {
+            background-color: #fffaf0;
+        }
+
+        h2 {
+            color: #2a9d8f;
+        }
+
+        h3 {
+            color: #264653;
+        }
+
+        p,
+        ul {
+            font-family: 'Georgia', serif;
+        }
+
+        .button {
+            background-color: #e9c46a;
+        }
+
+        .button:hover {
+            background-color: #f4a261;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                grid-column: span 1;
+            }
+        }
+
+        @media print {
+            body {
+                width: 100%;
+            }
+
+            .container {
+                display: block;
+                width: 100%;
+                padding: 0;
+            }
+
+            .slide {
+                width: 65%;
+                margin: 2.5%;
+                page-break-inside: avoid;
+                /* Prevents page breaks inside a slide */
+                box-shadow: none;
+            }
+
+            .container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+
+            .footer {
+                display: none;
+                /* Hide footer in print */
+            }
+
+            @page {
+                margin: 1cm;
+                /* Adjust the page margin */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Slide 1: Capa -->
+        <div class="slide animated" id="slide1">
+            <h2>House of Innovation Saquarema</h2>
+            <div class="content">
+                <p>Inovação, Empreendedorismo e Sustentabilidade no Litoral do Rio de Janeiro</p>
+                <p>Fomentando a criatividade e o desenvolvimento sustentável em uma das regiões mais emblemáticas do
+                    Brasil.</p>
+            </div>
+            <div class="doodle-container">
+              
+            </div>
+        </div>
+
+        <!-- Slide 2: Introdução -->
+        <div class="slide animated" id="slide2">
+            <h2>Por que Saquarema?</h2>
+            <div class="content">
+                <p>Escolhemos Saquarema como o local perfeito para o nosso evento por sua <span
+                        class="highlight">vibração inovadora</span> e beleza natural. Conhecida como a "Capital do
+                    Surf", Saquarema é também um crescente polo de inovação e empreendedorismo no Rio de Janeiro.</p>
+                <p>O evento visa aproveitar essa sinergia única para promover inovação e sustentabilidade.</p>
+            </div>
+            <div class="doodle-container"> </div>
+        </div>
+
+        <!-- Slide 3: Objetivos do Evento -->
+        <div class="slide animated" id="slide3">
+            <h2>Nossos Objetivos</h2>
+            <div class="content">
+                <ul>
+                    <li>Promover <span class="highlight">inovação</span> e <span class="highlight">empreendedorismo
+                            sustentável</span>.</li>
+                    <li>Facilitar o intercâmbio entre academia, empresas, e sociedade.</li>
+                    <li>Estimular práticas sustentáveis através do esporte e alimentação.</li>
+                    <li>Fortalecer Saquarema como um polo de desenvolvimento.</li>
+                    <li>Criar uma rede colaborativa entre diferentes atores locais, regionais e internacionais.</li>
+                    <li>Incentivar novas startups focadas em sustentabilidade e inovação.</li>
+                </ul>
+            </div>
+            <div class="doodle-container"> </div>
+        </div>
+
+        <!-- Slide 4: Local do Evento -->
+        <div class="slide animated" id="slide4">
+            <h2>A Casa Frente ao Mar</h2>
+            <div class="content">
+                <p>Nosso evento será realizado em uma <span class="highlight">casa charmosa</span> à beira-mar,
+                    oferecendo um ambiente único e inspirador que conecta a inovação com a natureza.</p>
+                <p>A casa será equipada com tecnologia para apresentações multimídia e terá espaços dedicados para
+                    networking e discussões informais, aproveitando a vista e a proximidade com a natureza.</p>
+            </div>
+            <div class="doodle-container"> </div>
+        </div>
+
+        <!-- Slide 5: Parcerias Estratégicas -->
+        <div class="slide animated" id="slide5">
+            <h2>Parcerias e Colaborações</h2>
+            <div class="content">
+                <p>Estabelecemos parcerias com a <span class="highlight">Prefeitura de Saquarema</span>, empresas locais
+                    e instituições acadêmicas como a UFRJ e a FAPERJ, para garantir que o evento tenha impacto
+                    duradouro.</p>
+                <p>Buscaremos apoio de ONGs e entidades internacionais para fortalecer ainda mais o impacto e o alcance
+                    do evento.</p>
+            </div>
+            <div class="doodle-container"> </div>
+        </div>
+
+        <!-- Slide 6: Programação do Evento -->
+        <div class="slide animated" id="slide6">
+            <h2>Agenda dos 3 Dias</h2>
+            <div class="content">
+                <p><strong>Dia 1:</strong></p>
+                <ul>
+                    <li>Cerimônia de abertura com representantes da prefeitura e patrocinadores.</li>
+                    <li>Palestra magna sobre "O Papel da Inovação na Sustentabilidade Global".</li>
+                </ul>
+                <p><strong>Dia 2:</strong></p>
+                <ul>
+                    <li>Sessões interativas de workshops sobre "Economia Circular" e "Turismo Sustentável".</li>
+                    <li>Exposição "A Praia é Aqui" com atividades práticas.</li>
+                </ul>
+                <p><strong>Dia 3:</strong></p>
+                <ul>
+                    <li>Painéis de discussão sobre "O Futuro do Empreendedorismo Verde".</li>
+                    <li>Encerramento com premiação de ideias inovadoras apresentadas durante o evento.</li>
+                </ul>
+            </div>
+            <div class="doodle-container"> </div>
+        </div>
+
+        <!-- Slide 7: Destaques das Palestras -->
+        <div class="slide animated" id="slide7">
+            <h2>Grandes Palestras</h2>
+            <div class="content">
+                <ul>
+                    <li><strong>Caio Vassão:</strong> Inovações Tecnológicas para Cidades Sustentáveis</li>
+                    <li><strong>Gabi Agustini:</strong> Empreendedorismo Social e Impacto Global</li>
+                    <li><strong>Edu Valladares:</strong> A Transformação Digital no Setor Ambiental</li>
+                </ul>
+            </div>
+            <div class="doodle-container"> </div>
+        </div>
+
+        <!-- Slide 8: Workshops e Atividades -->
+        <div class="slide animated" id="slide8">
+            <h2>Workshops e Experiências</h2>
+            <div class="content">
+                <ul>
+                    <li>Startups Sustentáveis</li>
+                    <li>Transformação Digital no Turismo</li>
+                    <li>Urbanismo Sustentável</li>
+                    <li>Design Thinking para Sustentabilidade</li>
+                    <li>Oficina de Reciclagem Criativa</li>
+                </ul>
+            </div>
+            <div class="doodle-container"> </div>
+        </div>
+
+        <!-- Slide 9: Exposição “A Praia é Aqui” -->
+        <div class="slide animated" id="slide9">
+            <h2>Exposição Especial: “A Praia é Aqui”</h2>
+            <div class="content">
+                <p>Uma experiência sensorial que simula uma praia ecológica, destacando a importância da conservação
+                    ambiental.</p>
+                <p>A exposição incluirá instalações interativas que mostram o impacto dos resíduos plásticos nos oceanos
+                    e atividades práticas de coleta e reciclagem, visando conscientizar e envolver o público.</p>
+            </div>
+            <div class="doodle-container"> </div>
+        </div>
+
+        <!-- Slide 10: Captação de Recursos -->
+        <div class="slide animated" id="slide10">
+            <h2>Nossa Estratégia de Financiamento</h2>
+            <div class="content">
+                <ul>
+                    <li>Parcerias Corporativas</li>
+                    <li>Crowdfunding</li>
+                    <li>Subvenções Governamentais</li>
+                    <li>Venda de Ingressos e Merchandising</li>
+                    <li>Patrocínios de Empresas Sustentáveis</li>
+                    <li>Crowdfunding com Recompensas</li>
+                    <li>Aplicativos de Doação</li>
+                </ul>
+            </div>
+            <div class="doodle-container"> </div>
+        </div>
+
+        <!-- Slide 11: Impacto Esperado -->
+        <div class="slide animated" id="slide11">
+            <h2>Impacto Positivo</h2>
+            <div class="content">
+                <ul>
+                    <li>Desenvolvimento Regional</li>
+                    <li>Educação e Capacitação</li>
+                    <li>Integração e Networking</li>
+                    <li>Criação de novas iniciativas e startups locais</li>
+                    <li>Fortalecimento do Ecossistema Local</li>
+                    <li>Aumento da Conscientização Ambiental</li>
+                </ul>
+            </div>
+            <div class="doodle-container"> </div>
+        </div>
+
+        <!-- Slide 12: Equipe do Projeto -->
+        <div class="slide animated" id="slide12">
+            <h2>Nossa Equipe</h2>
+            <div class="content">
+                <p>Conheça os curadores e coordenadores por trás do evento:</p>
+                <ul>
+                    <li><strong>Pedro Lucas Pinho:</strong> Especialista em desenvolvimento sustentável, com vasta
+                        experiência em projetos de impacto social.</li>
+                    <li><strong>Estela Rocha:</strong> Consultora em inovação e tecnologia, com foco em transformação
+                        digital e inclusão social.</li>
+                </ul>
+            </div>
+            <div class="doodle-container"> </div>
+        </div>
+
+        <!-- Slide 13: Conclusão -->
+        <div class="slide animated" id="slide13">
+            <h2>Junte-se a Nós em Saquarema</h2>
+            <div class="content">
+                <p>Participe deste evento incrível e faça parte da transformação! Esperamos por você em Saquarema.</p>
+                <a href="#contact" class="button">Entre em Contato</a>
+            </div>
+            <div class="doodle-container"> </div>
+        </div>
+
+        <!-- Slide 14: Contato e Redes Sociais -->
+        <div class="slide animated" id="slide14">
+            <h2>Entre em Contato</h2>
+            <div class="content">
+                <p>Para mais informações, entre em contato conosco:</p>
+                <ul>
+                    <li>Email: contato@innovationsaquarema.com</li>
+                    <li>Telefone: (21) 1234-5678</li>
+                    <li><a href="https://facebook.com" class="highlight">Facebook</a></li>
+                    <li><a href="https://instagram.com" class="highlight">Instagram</a></li>
+                    <li><a href="https://linkedin.com" class="highlight">LinkedIn</a></li>
+                </ul>
+            </div>
+            <div class="doodle-container"> </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>House of Innovation Saquarema © 2024</p>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/css-doodle@0.17.4/css-doodle.min.js"></script>
+
+    <script>
+        function generateRandomDoodle(index, totalSlides) {
+            const hueStart = (index * 360) / totalSlides; // Spread the hue across the slides
+            const hueShift = Math.random() * 14 + 1; // Hue shift between 1 and 15
+            const gridSize = Math.floor(Math.random() * 8) + 12; // Grid size between 12 and 20
+            const marginSize = Math.random() * 1 - 0.5; // Margin size between -0.5px and 0.5px
+            const transitionTime = (Math.random() * 0.5 + 0.5).toFixed(2) + 's'; // Transition between 0.5s and 1s
+            const pathOptions = [
+                '0 0, 100% 0, 100% 100%',
+                '0 0, 100% 0, 0 100%',
+                '0 0, 100% 100%, 0 100%',
+                '100% 0, 100% 100%, 0 100%',
+                '50% 0, 100% 50%, 50% 100%, 0 50%',
+                '25% 25%, 75% 25%, 75% 75%, 25% 75%'
+            ];
+            const backgroundOptions = [
+                `linear-gradient(${hueStart}deg, hsl(${hueStart}, 70%, 50%), hsl(${hueStart + hueShift}, 70%, 50%))`,
+                `radial-gradient(circle, hsl(${hueStart}, 70%, 50%), hsl(${hueStart + hueShift}, 70%, 50%))`,
+                `repeating-linear-gradient(${hueStart}deg, hsl(${hueStart}, 70%, 50%), hsl(${hueStart + hueShift}, 70%, 50%) 20%)`
+            ];
+            const blendModes = ['multiply', 'screen', 'overlay', 'difference', 'color-dodge'];
+    
+            return (`
+                @grid: ${gridSize} / 100vmax / #0a0c27;
+                --hue: calc(${hueStart} + ${hueShift} * @x * @y);
+                background: ${backgroundOptions[Math.floor(Math.random() * backgroundOptions.length)]};
+                margin: ${marginSize}px;
+                transition: ${transitionTime} ease;
+                clip-path: polygon(${pathOptions[Math.floor(Math.random() * pathOptions.length)]});
+                mix-blend-mode: ${blendModes[Math.floor(Math.random() * blendModes.length)]};
+            `);
+        }
+    
+        // Get the total number of slides
+        const totalSlides = document.querySelectorAll('.doodle-container').length;
+    
+        // Apply the doodles to each slide with variations based on the slide index
+        document.querySelectorAll('.doodle-container').forEach((container, index) => {
+            const doodle = document.createElement('css-doodle');
+            doodle.innerHTML = generateRandomDoodle(index, totalSlides);
+            container.appendChild(doodle);
+        });
+    
+        // JavaScript for slide animations
+        window.addEventListener('scroll', function () {
+            var slides = document.querySelectorAll('.slide');
+            var scrollPosition = window.pageYOffset + window.innerHeight - 100;
+    
+            slides.forEach(function (slide) {
+                if (scrollPosition > slide.offsetTop) {
+                    slide.classList.add('visible');
+                }
+            });
+        });
+    </script>
+    
+    
+    
+</body>
+
+</html>
