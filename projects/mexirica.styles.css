@@ -1,0 +1,18 @@
+
+
+#guide-content{
+    display: flex;
+    flex-direction: column;
+    /* padding: 5px; */
+    /* margin: 10px; */
+    border: 2px solid #808080;
+    border-radius: 8px;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    /* background-color: white; */
+    padding: 25px;
+    /* margin: 10px; */
+}
