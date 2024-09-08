@@ -4,7 +4,7 @@
     flex-direction: column;
     border: 2px solid #808080;
     border-radius: 8px;
-    padding: 10px;
+    /* padding: 10px; */
     margin: 20px auto;
     max-width: 900px; /* Limit max width for better readability */
     background-color: #f9f9f9; /* Light background for better contrast */
@@ -23,7 +23,7 @@ article {
 
 /* Summary Section Styling */
 #summary {
-    margin: 20px auto;
+    /* margin: 20px auto; */
     max-width: 900px; /* Same width as the content */
 }
 
@@ -70,7 +70,7 @@ article {
 @media (max-width: 768px) {
     #guide-content {
         padding: 15px;
-        margin: 10px;
+        margin: 10px auto;
     }
 
     #summary-list {
@@ -84,6 +84,7 @@ article {
     }
 
     article {
-        padding: 15px;
+        /* padding: 22px; */
+        padding: 1.5rem;
     }
 }

@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       id: "how-it-started",
       title: "1.2 How It Started",
       content:
-        "The 'Mexirica Navegante' is a direct outcome of the Casa Plástica Project and the NGO Somos Natureza’s partnership. Both are dedicated to creating solutions for sustainable living. Inspired by the Precious Plastic project, we adapted the shredder-extrusion machine to meet local needs. The journey began with a shared vision of turning the plastic problem into an opportunity for change.",
+        "The 'Mexirica Navegante' is a direct outcome of the Casa Plastica Project and the NGO Somos Natureza partnership. Both are dedicated to creating solutions for sustainable living. Inspired by the Precious Plastic project, we adapted the shredder-extrusion machine to meet local needs. The journey began with a shared vision of turning the plastic problem into an opportunity for change.",
     },
     {
       id: "work-safe",
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       title: "3.3 Second Sorting",
       content:
-        "This step is more meticulous. You will now sort the plastic according to type, separating Polyethylene (PE), Polypropylene (PP), Polystyrene (PS), and PET plastics. Sorting by type ensures better-quality extrusion and final products. Plastics that are too degraded should be discarded as they may affect the extrusion process.",
+        "This step is more meticulous. You will now sort the plastic according to type, look for the ones with the recycling symbol <strong>2</strong> or <strong>5</strong>, separating Polyethylene (PE) and Polypropylene (PP) plastics. Sorting by type ensures better-quality extrusion and final products. Plastics that are too degraded should be discarded as they may affect the extrusion process.",
     },
     {
       id: "microplastics",
@@ -191,9 +191,8 @@ document.addEventListener("DOMContentLoaded", function () {
       title: "8.2 Fun Facts",
       content: `
                 <ul>
-                    <li>The plastic sheets made from ocean waste can be used to create surfboards, highlighting how we can turn ocean pollution into something that celebrates the ocean.</li>
                     <li>The "Mexirica Navegante" got its name due to its bright orange color, reminiscent of a tangerine ("mexirica" in Brazilian Portuguese), and its ability to "navigate" through different plastic types!</li>
-                    <li>The machine can process up to X kilograms of plastic per hour, depending on the plastic type and condition.</li>
+                    <li>The machine can process up to 2 kilograms of plastic per hour, depending on the plastic type and condition.</li>
                     <li>The recycled plastic beams and sheets have been used in everything from park benches to community art projects!</li>
                 </ul>
             `,
