@@ -1,18 +1,89 @@
-
-
-#guide-content{
+/* General Content Styling */
+#guide-content {
     display: flex;
     flex-direction: column;
-    /* padding: 5px; */
-    /* margin: 10px; */
     border: 2px solid #808080;
     border-radius: 8px;
+    padding: 10px;
+    margin: 20px auto;
+    max-width: 900px; /* Limit max width for better readability */
+    background-color: #f9f9f9; /* Light background for better contrast */
 }
 
+/* Article Styling */
 article {
     display: flex;
     flex-direction: column;
-    /* background-color: white; */
-    padding: 25px;
-    /* margin: 10px; */
+    padding: 20px;
+    margin: 15px 0;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Summary Section Styling */
+#summary {
+    margin: 20px auto;
+    max-width: 900px; /* Same width as the content */
+}
+
+#summary h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Summary List Styling */
+#summary-list {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+#summary-list li {
+    margin: 10px 0;
+}
+
+#summary-list li a {
+    display: block;
+    padding: 12px 20px;
+    color: #007bff;
+    font-size: 1.1em;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover Effects for Summary Links */
+#summary-list li a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    #guide-content {
+        padding: 15px;
+        margin: 10px;
+    }
+
+    #summary-list {
+        margin: 0;
+        box-shadow: none; /* Simplify for smaller screens */
+    }
+
+    #summary-list li a {
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+
+    article {
+        padding: 15px;
+    }
 }
