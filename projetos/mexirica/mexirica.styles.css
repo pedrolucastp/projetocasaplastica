@@ -94,7 +94,7 @@ article {
 
 .language-selection {
     display: flex;
-    margin: 15px 0;
+    margin-top: 15px;
     gap: 10px;
 }
 
@@ -123,6 +123,7 @@ article {
 }
 
 .english-guide {
+    margin-top: 15px;
     padding: 0 15px;
     border-left: 4px solid #ff8400;
     font-size: 0.9em;
