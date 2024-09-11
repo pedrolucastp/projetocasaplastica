@@ -1,4 +1,9 @@
 /* General Content Styling */
+#user-guide {
+    max-width: 900px;
+    margin: auto;
+}
+
 #guide-content {
     display: flex;
     flex-direction: column;
@@ -64,6 +69,85 @@ article {
 #summary-list li a:hover {
     background-color: #007bff;
     color: #fff;
+}
+
+ /* Styling for the language dropdown */
+ #language-select, #custom-language-select {
+    width: 300px;
+    padding: 10px;
+    font-size: 1.1em;
+    background-color: #f2f2f2;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    appearance: none;
+}
+
+#language-select:hover, #custom-language-select:hover {
+    border-color: #00aaff;
+}
+
+/* Custom styling for button */
+#translate-btn {
+    background-color: #ff5900;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+#translate-btn:hover {
+    background-color: #00cc25;
+}
+
+#translate-btn:active {
+    background-color: #1198d7;
+}
+
+/* Custom feedback message */
+#feedback {
+    margin: 30px auto;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Hide the custom language select initially */
+#custom-language-select {
+    display: none;
+}
+
+/* Style for short description */
+.description {
+    margin-top: 20px;
+    font-size: 1em;
+    /* line-height: 1.2em; */
+    color: #333;
+}
+
+/* English guidance */
+.english-guide {
+    /* background-color: #f0f8ff; */
+    padding: 15px;
+    margin-top: 20px;
+    border-left: 4px solid #ff8400;
+    font-size: 0.9em;
+}
+
+.english-guide h3 {
+    color: #007bb5;
+    margin-top: 0;
+}
+
+.language-select-label {
+    font-size: 1em; 
+    margin-top: 10px; 
+    display: block;
 }
 
 /* Mobile Responsiveness */
