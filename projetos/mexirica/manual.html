@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Guia de uso da Mexirica Navegante, uma máquina trituradora e de extrusão 2-em-1 para reciclagem de plásticos oceânicos em materiais úteis.">
-    
+    <meta name="description"
+        content="Guia de uso da Mexirica Navegante, uma máquina trituradora e de extrusão 2-em-1 para reciclagem de plásticos oceânicos em materiais úteis.">
+
     <title>Mexirica Navegante - Guia de Uso</title>
     <link rel="icon" type="image/x-icon" href="../../favicon.ico">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap">
     </noscript>
@@ -36,19 +38,14 @@
             <h1>Guia de Uso</h1>
 
             <div class="description">
-                <p>A <strong>Mexirica Navegante</strong> é uma máquina inovadora 2-em-1 que combina trituração e extrusão para reciclar plásticos oceânicos coletados nas praias e transformá-los em materiais úteis, como vigas e chapas de plástico. </p>
-                <p>Este guia foi criado para ajudar os voluntários a operar a máquina de forma segura e eficiente, contribuindo para a preservação do meio ambiente.</p>
+                <p>A <strong>Mexirica Navegante</strong> é uma máquina inovadora 2-em-1 que combina trituração e
+                    extrusão para reciclar plásticos oceânicos coletados nas praias e transformá-los em materiais úteis,
+                    como vigas e chapas de plástico. </p>
+                <p>Este guia foi criado para ajudar os voluntários a operar a máquina de forma segura e eficiente,
+                    contribuindo para a preservação do meio ambiente.</p>
             </div>
 
-            <div class="english-guide">
-                <p>If you wish to view the guide in another language, select your preferred language from the dropdown below. The translated document will open in a new tab.</p>
-            </div>
-
-            <div>
-                <label for="language-select" class="language-select-label">
-                    Escolha o seu idioma preferido:
-                </label>
-                
+            <div class="language-selection">
                 <select id="language-select">
                     <option value="pt">Português</option>
                     <option value="en">Inglês (English)</option>
@@ -64,12 +61,19 @@
                 </select>
 
                 <button id="translate-btn">Visualizar</button>
-            </div>
 
+            </div>
+            ß
             <div id="loader" style="display: none;">Carregando o documento traduzido...</div>
 
+            <div class="english-guide">
+                <p>If you wish to view the guide in another language, select your preferred language from the dropdown
+                    below. The translated document will open in a new tab.</p>
+            </div>
+
             <div id="feedback">
-                <p>Se houver problemas ou feedback, envie um e-mail para <a href="mailto:casaplastica@gmail.com">casaplastica@gmail.com</a>.</p>
+                <p>Se houver problemas ou feedback, envie um e-mail para <a
+                        href="mailto:casaplastica@gmail.com">casaplastica@gmail.com</a>.</p>
             </div>
         </section>
     </main>
@@ -78,18 +82,17 @@
         <p>&copy; 2024 Casa Plastica. Todos os direitos reservados.</p>
     </footer>
 
-
     <script>
         const translateButton = document.getElementById('translate-btn');
         const loader = document.getElementById('loader');
         const languageSelect = document.getElementById('language-select');
         const docUrl = 'https://docs.google.com/document/d/1TrkrhPCszpQcQUK34AwC9ynrvN9JnuQaGdCd4f7dl3A/pub';
-        
+
         translateButton.addEventListener('click', function () {
             let selectedLanguage = languageSelect.value;
 
             let url = selectedLanguage === 'en'
-                ? docUrl 
+                ? docUrl
                 : `https://translate.google.com/translate?hl=${selectedLanguage}&sl=auto&tl=${selectedLanguage}&u=${docUrl}`;
 
             loader.style.display = 'block';
