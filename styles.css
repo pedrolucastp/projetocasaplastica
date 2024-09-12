@@ -63,6 +63,7 @@ header {
     max-width: 900px;
     margin: auto;
     width: 100%;
+
 }
 
 header a {
@@ -77,7 +78,7 @@ header h1 {
 /* Estilos da Navegação */
 nav {
     width: 100%;
-    justify-content: flex-start;
+    justify-content: space-between;
     display: flex;
     align-items: center;
     text-align: center;
@@ -109,10 +110,11 @@ nav ul li a:hover {
 
 main {
     display: flex;
-    overflow: auto;
-    height: 100%;
+    flex-direction: column;
+    /* overflow: auto; */
+    /* height: 100%; */
     max-width: 900px;
-    margin: auto;
+    margin: 0 auto;
 }
 
 section {
@@ -127,14 +129,26 @@ section.hidden {
     display: none;
 }
 
+section h1 {
+    font-family: "Lobster", sans-serif;
+    font-style: normal;
+    line-height: 1em;
+    font-weight: 400;
+    /* letter-spacing: 2px; */
+    text-shadow: 2px 2px 0 #3d3933;
+    font-size: 3em;
+    color: #FFF;
+    margin-bottom: 20px ;
+}
+
 section h2 {
     font-family: "Lobster", sans-serif;
     font-style: normal;
-    line-height: 100%;
+    /* line-height: 100%; */
     font-weight: 400;
-    letter-spacing: 2px;
+    /* letter-spacing: 2px; */
     text-shadow: 2px 2px 0 #3d3933;
-    font-size: 5vw;
+    font-size: 2em;
     color: #FFF;
     margin-bottom: 20px ;
 }
@@ -158,9 +172,12 @@ footer {
     padding: 20px 0;
     text-align: center;
     width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
     color: #333;
     font-size: 12px;
     line-height: 16px;
+
 }
 
 /* Media query for screens smaller than 700px */
@@ -177,3 +194,49 @@ section h2 {
 }
 
 }
+
+.impact-numbers {
+    display: flex;
+    justify-content: space-around;
+    /* flex-wrap: wrap; */
+    margin: 40px 0;
+}
+
+.impact-item {
+    text-align: center;
+    /* width: 200px; */
+    max-width: 50%;
+    margin: 20px;
+}
+
+.impact-item i {
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+canvas {
+    margin: 40px auto;
+    display: block;
+    max-width: 600px;
+}
+
+#highlights ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#highlights ul li {
+    margin: 20px 0;
+}
+
+#highlights ul li strong {
+    color: #4CAF50;
+}
+
+@media screen and (max-width: 768px) {
+    .impact-numbers {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
