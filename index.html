@@ -9,53 +9,66 @@
     <meta name="google-site-verification" content="8Ds7XTj8rCqy9I93tGIylV6meUg8JKTWYfMa2q6hyCs" />
     <title>Casa Plastica | Sustentabilidade e Reciclagem</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="styles.css">
+    <!-- Preloading fonts for better performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap">
-    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div id="header"></div>
-
+    
     <main>
-        <section id="home">
-            <h1>Transformando Plástico em Soluções Sustentáveis</h1>
-            <p>Somos a Casa Plastica, uma empresa dedicada à reciclagem de plásticos oceânicos e à criação de uma
-                economia circular. Unimos tecnologia, educação e inovação para empoderar comunidades e preservar o meio
-                ambiente.</p>
-            <a href="#about" class="btn">Saiba mais</a>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-text">
+                <h1>Transformando Plástico em Soluções Sustentáveis</h1>
+                <p>Somos a Casa Plastica, uma empresa dedicada à reciclagem de plásticos oceânicos e à criação de uma
+                    economia circular.</p>
+                <p>Unimos tecnologia, educação e inovação para empoderar comunidades e preservar o meio ambiente.</p>
+                <a href="#about" class="btn">Saiba mais</a>
+            </div>
+            <img src="media/hero-1.jpg" alt="Ocean and Plastic Recycling" class="hero-image">
         </section>
 
+        <!-- About Section -->
         <section id="about">
-            <h2>Sobre Nós</h2>
-            <p>A Casa Plastica foi fundada em 2018 com o objetivo de enfrentar a poluição plástica e promover soluções
-                inovadoras para o meio ambiente. Desde então, atuamos em Saquarema e em outras localidades,
-                desenvolvendo tecnologias acessíveis para a reciclagem de plásticos e capacitando comunidades por meio
-                da educação ambiental.</p>
-            <a href="about.html" class="btn">Leia mais</a>
+            <div class="content">
+                <h2>Sobre Nós</h2>
+                <p>A Casa Plastica foi fundada em 2018 com o objetivo de enfrentar a poluição plástica e promover soluções inovadoras
+                    para o meio ambiente.</p>
+                <p>Desenvolvemos tecnologias acessíveis para a reciclagem de plásticos e capacitamos comunidades por meio da educação ambiental.</p>
+                <a href="about.html" class="btn">Leia mais</a>
+            </div>
+            <img src="media/hero-2.jpg" alt="Community Workshop" class="section-image">
         </section>
 
+        <!-- Projects Section -->
         <section id="projects">
-            <h2>Projetos Recentes</h2>
-            <p>Conheça nossos principais projetos, como a construção de máquinas de reciclagem, workshops e eventos
-                focados em sustentabilidade.</p>
-            <a href="projects.html" class="btn">Veja nossos projetos</a>
+            <div class="content">
+                <h2>Projetos Recentes</h2>
+                <p>Conheça nossos principais projetos, como a construção de máquinas de reciclagem, workshops e eventos focados em sustentabilidade.</p>
+                <p>Cada projeto visa transformar resíduos plásticos em materiais úteis e promover o desenvolvimento sustentável.</p>
+                <a href="projects.html" class="btn">Veja nossos projetos</a>
+            </div>
+            <img src="media/hero-3.jpg" alt="Recycling Machine" class="section-image">
         </section>
 
-        <section id="impact">
-            <h2>Nosso Impacto</h2>
-            <p>Estamos transformando o futuro da reciclagem. Até hoje, já impactamos mais de 10 mil pessoas por meio de
-                eventos, palestras e workshops, além de termos reciclado toneladas de plásticos oceânicos.</p>
-            <a href="impact.html" class="btn">Saiba mais sobre o impacto</a>
+        <!-- Impact Section -->
+        <section id="impact" class="alt highlight">
+            <div class="content">
+                <h2>Nosso Impacto</h2>
+                <p>Impactamos mais de 10 mil pessoas por meio de eventos, palestras e workshops, além de reciclarmos toneladas de plásticos oceânicos.</p>
+                <p>Promovemos a conscientização ambiental e criamos soluções para um futuro sustentável.</p>
+                <a href="impact.html" class="btn">Saiba mais sobre o impacto</a>
+            </div>
+            <img src="media/hero-4.jpg" alt="Impact Visualization" class="section-image">
         </section>
     </main>
 
     <div id="footer"></div>
+
     
     <script src="main.js"></script>
 </body>
