@@ -77,7 +77,7 @@ header {
     width: 100%;
     /* visibility: visible; */
     opacity: 1;
-    transform: translateX(0) translateY(101px);
+    transform: translateX(0) translateY(100px);
 }
 
 .nav-menu li {
